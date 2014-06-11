@@ -23,7 +23,7 @@ public final class Main {
 		bootstrap.setPipelineFactory(new PipelineFactory());
 		bootstrap.bind(new InetSocketAddress(port));
 
-		logger.info("Server binded on port: " + port);
+		logger.info("Server binded on port: " + port);		
 	}
 
 }

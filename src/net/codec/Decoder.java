@@ -7,13 +7,17 @@ import org.jboss.netty.handler.codec.frame.FrameDecoder;
 
 import packet.Packet;
 import packet.PacketManager;
+import protocol.factory.MessageFactory;
 
 public class Decoder extends FrameDecoder {
 
 	@Override
-	protected Object decode(ChannelHandlerContext ctx, Channel channel, ChannelBuffer buffer) {
-		Packet packet = new Packet(buffer.readUnsignedByte(), channel);
-		PacketManager.handle(packet, buffer);
+	protected Object decode(ChannelHandlerContext ctx, Channel channel,
+			ChannelBuffer buffer) {
+
+		Packet packet = new Packet(buffer.readUnsignedByte(),
+				MessageFactory.getMessage(new String(buffer.array())), channel);
+		// PacketManager.handle(packet, buffer);
 		return packet;
 	}
 

@@ -1,11 +1,12 @@
 package net;
 
-import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.ChannelStateEvent;
 import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelHandler;
+
+import packet.Packet;
 
 public class ChannelHandler extends SimpleChannelHandler {
 	
@@ -25,9 +26,8 @@ public class ChannelHandler extends SimpleChannelHandler {
 	public void messageReceived(ChannelHandlerContext ctx, MessageEvent e)
 			throws Exception {
 		
-		byte[] msg = ((ChannelBuffer)e.getMessage()).array();
-		
-		System.out.println(new String(msg));
+		Packet packet = (Packet) e.getMessage();
+		System.out.println(packet.getMessage().toString());
         
 		// Соберем его для отправки обработчику
         /*Packet packet = new Packet();
